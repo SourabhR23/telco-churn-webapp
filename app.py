@@ -1,7 +1,14 @@
+# Required Packages
 import streamlit as st
 import pandas as pd
-import numpy as np
 import pickle
+
+# Web Page configuration
+st.set_page_config(
+    page_title = "Customer Churn Web-App",
+    page_icon = "data\web_icon.ico",
+    layout = "wide",
+    initial_sidebar_state = "expanded")
 
 # Title for the app
 st.title("""
@@ -16,11 +23,12 @@ st.sidebar.markdown('[Example CSV Input file](https://github.com/SourabhR23/tele
                     '/churn_example.csv)')
 
 # Collect user input features into dataframe
-uploaded_file = st.sidebar.file_uploader('Upload your input CSV file', type = ['csv'])
+uploaded_file = st.sidebar.file_uploader('Upload your input CSV file', type=['csv'])
 if uploaded_file is not None:
     input_df = pd.read_csv(uploaded_file)
 else:
     st.sidebar.write('Enter the data manually')
+
 
     def user_input_features():
         gender = st.sidebar.selectbox('Gender', ('Male', 'Female'))
@@ -66,13 +74,15 @@ else:
                 'TotalCharges': total_charge}
         features = pd.DataFrame(data, index=[0])
         return features
+
+
     input_df = user_input_features()
 
 # Combining the user input features with entire churn dataset
 # This will be useful for the encoding phase
 raw_churn_data = pd.read_csv(r'Telecom/Churn.csv')
-raw_churn_data = raw_churn_data.drop(columns = ['customerID', 'Churn'])
-df = pd.concat([input_df, raw_churn_data], axis = 0)
+raw_churn_data = raw_churn_data.drop(columns=['customerID', 'Churn'])
+df = pd.concat([input_df, raw_churn_data], axis=0)
 
 # Encoding of the ordinal features
 encode = ['gender', 'Partner', 'Dependents', 'PhoneService', 'MultipleLines',
@@ -80,8 +90,8 @@ encode = ['gender', 'Partner', 'Dependents', 'PhoneService', 'MultipleLines',
           'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract',
           'PaperlessBilling', 'PaymentMethod']
 for col in encode:
-    dummy = pd.get_dummies(df[col], prefix = col, drop_first = True)
-    df = pd.concat([df, dummy], axis = 1)
+    dummy = pd.get_dummies(df[col], prefix=col, drop_first=True)
+    df = pd.concat([df, dummy], axis=1)
     del df[col]
 # Select only the first row (the user input data)
 df = df[: 1]
@@ -93,8 +103,8 @@ if uploaded_file:
     st.write(input_df)
 else:
     st.write('Awaiting CSV file to be uploaded. Currently using below example.')
-    st.write(input_df.iloc[:, :5])
-    st.write(input_df.iloc[:, 6: 11])
+    st.write(input_df.iloc[:, :7])
+    st.write(input_df.iloc[:, 7: 11])
     st.write(input_df.iloc[:, 11: 15])
     st.write(input_df.iloc[:, 15:])
 
@@ -108,13 +118,47 @@ predict = st.button('Predict')
 if predict:
     # predictions
     prediction = load_clf.predict(df)
-    prediction_proba = load_clf.predict_proba(df)[:,0]
+    prediction_proba = load_clf.predict_proba(df)
 
     # output results
     if prediction == 1:
         st.write('This customer is likely to be churned.')
-        st.write(f'Confidence: {prediction_proba * 100}')
+        st.write(f'Confidence: {prediction_proba[:, 1] * 100}')
     else:
         st.write('This customer is likely to continue with the service.')
-        st.write(f'Confidence: {prediction_proba * 100}')
+        st.write(f'Confidence: {prediction_proba[:, 0] * 100}')
 
+
+# Streamlit Settings
+hide_streamlit_style = """
+            <style>
+                a:link {
+                        background-color: white;
+                        text-decoration: none;
+                        }
+                h1 {
+                    background-color: #864bd4;
+                    }
+                #MainMenu {
+                            visibility: hidden;
+                            }
+                div.stButton > button:first-child{
+                        background-color: #864bd4;
+                        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+                        }
+                footer {
+                        visibility: hidden;
+                        }
+                footer:after {
+                            content:'Made by Sourabh Rasal ❤'; 
+                            visibility: visible;
+                            display: block;
+                            position: relative;
+                            #background-color: red;
+                            padding: 15px;
+                            top: 2px;
+                            }
+                
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html = True)
