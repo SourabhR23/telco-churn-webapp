@@ -14,7 +14,7 @@ st.set_page_config(
     initial_sidebar_state="expanded")
 
 # Title for the app
-image = Image.open(r'data\web_icon.ico')
+image = Image.open('data\\web_icon.ico')
 st.image(image, channels="BGR")
 st.title("""
             # Customer Churn Prediction App
