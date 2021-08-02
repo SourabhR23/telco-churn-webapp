@@ -8,9 +8,6 @@ def webapp_style():
                     section.e1fqkh3o0 > .css-hby737 {
                                 background-color: #3fb0ac;
                                 }
-                    .css-euvo1l{
-                                color: red;
-                                }
                     a:link {
                             background-color: #f7f7f7;
                             text-decoration: underline;
@@ -19,7 +16,7 @@ def webapp_style():
                         background-color: #3fb0ac;
                         }
                     #MainMenu {
-                                visibility: none;
+                                visibility: hidden;
                                 }
                     div.stButton > button:first-child{
                             background-color: #BE2F29;
