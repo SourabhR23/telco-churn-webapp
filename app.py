@@ -9,18 +9,21 @@ from PIL import Image
 # Web Page configuration
 st.set_page_config(
     page_title="Customer Churn Web-App",
-    page_icon="data\web_icon.ico",
+    page_icon=st.image("https://github.com/SourabhR23/telco-churn-webapp/blob/master/data/web_icon.ico"),
     layout="wide",
     initial_sidebar_state="expanded")
 
 # Title for the app
 image = Image.open('data/customer.png')
-st.image(image, channels="BGR")
-st.title("""
-            # Customer Churn Prediction App
-            This app predicts if the customer will churn or not.\n
-            Data obtained from the Kaggle - [Telco Customer Churn](https://www.kaggle.com/blastchar/telco-customer-churn)
-            """)
+col1, mid, col2 = st.beta_columns([1, 5, 25])
+with col1:
+    st.image(image, channels="BGR", width = 150)
+with col2:
+    st.title("""
+                # Customer Churn Prediction App
+                This app predicts if the customer will churn or not.\n
+                Data obtained from the Kaggle - [Telco Customer Churn](https://www.kaggle.com/blastchar/telco-customer-churn)
+                """)
 
 # Sidebar
 st.sidebar.header('User Input Features')

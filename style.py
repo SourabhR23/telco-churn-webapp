@@ -6,7 +6,7 @@ def webapp_style():
     hide_streamlit_style = """
                 <style>
                     section.e1fqkh3o0 > .css-hby737 {
-                                background-color: rgb(9, 10, 10);
+                                background-color: #3fb0ac;
                                 }
                     .css-euvo1l{
                                 color: red;
