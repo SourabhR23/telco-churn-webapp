@@ -5,7 +5,7 @@ import streamlit as st
 def webapp_style():
     hide_streamlit_style = """
                 <style>
-                    .css-1kw01g3 {
+                    section.e1fqkh3o0 > .css-hby737 {
                                 background-color: rgb(9, 10, 10);
                                 }
                     .css-euvo1l{
