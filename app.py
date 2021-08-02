@@ -65,8 +65,7 @@ if uploaded_file:
 else:
     st.write('Awaiting CSV file to be uploaded. Currently using below example.')
     st.write(input_df.iloc[:, :7])
-    st.write(input_df.iloc[:, 7: 11])
-    st.write(input_df.iloc[:, 11: 15])
+    st.write(input_df.iloc[:, 7: 15])
     st.write(input_df.iloc[:, 15:])
 
 # Load the saved model
