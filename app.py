@@ -9,7 +9,7 @@ from PIL import Image
 # Web Page configuration
 st.set_page_config(
     page_title="Customer Churn Web-App",
-    page_icon="data\web_icon.ico",
+    page_icon=r"data\web_icon.ico",
     layout="wide",
     initial_sidebar_state="expanded")
 
