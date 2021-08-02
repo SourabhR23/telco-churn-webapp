@@ -9,7 +9,6 @@ from PIL import Image
 # Web Page configuration
 st.set_page_config(
     page_title="Customer Churn Web-App",
-    page_icon=st.image("https://github.com/SourabhR23/telco-churn-webapp/blob/master/data/web_icon.ico"),
     layout="wide",
     initial_sidebar_state="expanded")
 
