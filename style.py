@@ -9,7 +9,7 @@ def webapp_style():
                                 background-color: #3fb0ac;
                                 }
                     a:link {
-                            background-color: #f7f7f7;
+                            background-color: white;
                             text-decoration: underline;
                             }
                     h1 {
