@@ -9,12 +9,12 @@ from PIL import Image
 # Web Page configuration
 st.set_page_config(
     page_title="Customer Churn Web-App",
-    page_icon=r"data\web_icon.ico",
+    page_icon="data\web_icon.ico",
     layout="wide",
     initial_sidebar_state="expanded")
 
 # Title for the app
-image = Image.open('data\web_icon.ico')
+image = Image.open(r'data\web_icon.ico')
 st.image(image, channels="BGR")
 st.title("""
             # Customer Churn Prediction App
