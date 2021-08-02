@@ -9,7 +9,7 @@ def webapp_style():
                                 background-color: rgb(9, 10, 10);
                                 }
                     .css-euvo1l{
-                                color: black;
+                                color: red;
                                 }
                     a:link {
                             background-color: #f7f7f7;
