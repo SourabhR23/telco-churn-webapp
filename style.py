@@ -16,7 +16,7 @@ def webapp_style():
                         background-color: #3fb0ac;
                         }
                     #MainMenu {
-                                visibility: hidden;
+                                visibility: none;
                                 }
                     div.stButton > button:first-child{
                             background-color: #BE2F29;
